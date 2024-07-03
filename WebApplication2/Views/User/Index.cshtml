@@ -1,0 +1,47 @@
+﻿@using WebApplication2.ViewModels
+@model List<UserViewModel>
+
+<section class="flush-with-above">
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<table class="table table-hover align-items-center table-borderless">
+					<tbody>
+						@foreach (var user in Model)
+						{
+							<tr class="bg-white">
+								<th scope="row">
+									<div style="display:flex; gap:20; align-items:center;width:100vm">
+										<img src="@user.ProfileImageUrl" style="border-radius:100%; height:150px; width:150px;" />
+										<p style="font-size:20px; margin-left:5px; font-weight:bold;">@user.UserName</p>
+									</div>
+								</th>
+								<td>
+									<a class="btn btn-outline-primary" style="margin-top:45px" asp-controller="User" asp-action="Detail" asp-route-id="@user.Id">
+										View Profile
+									</a>
+								</td>
+
+								@{
+									var mileage = user.Mileage == null ? "?" : user.Mileage.ToString();
+									var pace = user.Pace == null ? "?" : user.Pace.ToString();
+								}
+								<td>
+									<p style="margin-top:45px">@mileage mile at @pace mph</p>
+								</td>
+								@*<td><i class="icon-location"></i> @user.Location</td>*@
+							</tr>
+							<tr class="table-divider">
+								<th></th>
+								<td></td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			</div>
+			<!--end of col-->
+		</div>
+		<!--end of row-->
+	</div>
+	<!--end of container-->
+</section>
